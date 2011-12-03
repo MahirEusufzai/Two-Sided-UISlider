@@ -8,4 +8,4 @@
 
  Contributing
 
-* Please feel free to contribute; there are still many ways this project can be improved. (Polishing the graphics, allowing the user to manually change the parameters, etc) 
+* Feel free to contribute; there are still many ways this project can be improved. (Polishing the graphics, allowing the user to manually change the parameters, etc) 
