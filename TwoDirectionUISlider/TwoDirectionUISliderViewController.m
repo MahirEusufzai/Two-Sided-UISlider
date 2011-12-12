@@ -10,7 +10,7 @@
 
 @implementation TwoDirectionUISliderViewController
 
-@synthesize slider, hLabel, vLabel;
+@synthesize /*slider,*/ hLabel, vLabel;
 
 - (void)dealloc
 {
@@ -34,8 +34,12 @@
 
 - (void)viewDidLoad
 {
+    slider = [[CrossSlider alloc] initWithFrame:CGRectMake(80, 90, 202, 76) hMinValue:7 hMaxValue:58 vMinValue:34 vMaxValue:78 currentHValue:10 currentVValue:38];
+    
+    
     [slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventAllTouchEvents];
 
+    [self.view addSubview:slider];
     hLabel.text = [NSString stringWithFormat: @"%d", (int)(slider.hValue)];
     vLabel.text = [NSString stringWithFormat: @"%d", (int)(slider.vValue)];
     
@@ -56,7 +60,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    self.slider = nil;
+    //self.slider = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

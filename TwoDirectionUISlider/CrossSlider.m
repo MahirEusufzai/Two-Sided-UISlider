@@ -23,15 +23,29 @@ alpha:((c)&0xFF)/255.0]
 
 #pragma mark Init
 
-- (id)initWithFrame:(CGRect)frame
-{
+
+- (id)initWithFrame:(CGRect)frame hMinValue:(float)hMin hMaxValue:(float)hMax vMinValue:(float)vMin vMaxValue:(float)vMax currentHValue:(float)h currentVValue:(float)v {
+    
     self = [super initWithFrame:frame];
     if (self) {
         
         self.backgroundColor = [UIColor clearColor];
         
+
+        self.hMinimumValue = hMin;
+        self.hMaximumValue = hMax;
+        self.vMaximumValue = vMax;
+        self.vMinimumValue = vMin;
+        
+        hValueRange = self.hMaximumValue - self.hMinimumValue;
+        vValueRange = self.vMaximumValue - self.vMinimumValue;
+        
+        
+        self.hValue = h;
+        self.vValue = v;
+        
         [self setUpThumb];
-        [self setDefaultValues];
+
         [self setUpPositions];
         
     }
@@ -173,6 +187,8 @@ alpha:((c)&0xFF)/255.0]
     float vLocation = vBoundarySpan - (self.thumb.center.y - vTopBoundary);
     self.vValue = vLocation/vBoundarySpan * vValueRange + self.vMinimumValue;
     
+    NSLog(@"%f", self.thumb.center.x);
+    
 }
 
 #pragma mark Set Up Methods
@@ -209,16 +225,18 @@ alpha:((c)&0xFF)/255.0]
 - (void)setUpPositions {
     
     [self setUpHorizontalFrameAndBoundaries];
+  
+    CGFloat centerXValue = (self.hValue - self.hMinimumValue)/hValueRange * hBoundarySpan + hLeftBoundary;
     
-    CGFloat centerXValue = self.hValue/hValueRange * hBoundarySpan + hLeftBoundary;
-        
     
     [self setUpVerticalFrameAndBoundaries];
     
-    CGFloat centerYValue = self.vValue / vValueRange * vBoundarySpan + vTopBoundary;
+    CGFloat centerYValue = vBottomBoundary - (self.vValue - vMinimumValue) / vValueRange * vBoundarySpan;
 
   
-    self.thumb.center = CGPointMake(centerXValue, centerYValue);    
+    self.thumb.center = CGPointMake(centerXValue, centerYValue);        
+    
+
 }
 
 
@@ -232,7 +250,7 @@ alpha:((c)&0xFF)/255.0]
     horizontalSliderFrame = [self makeRectFromCenter:horizontalSliderCenter size:horizontalSliderSize];
     
     
-    // these are the thumb's horizontal boundaries in terms of its center
+    // these are the thumb's frame's horizontal boundaries in terms of its center
     
     hLeftBoundary = horizontalSliderFrame.origin.x + .5* ksliderThickness;
     

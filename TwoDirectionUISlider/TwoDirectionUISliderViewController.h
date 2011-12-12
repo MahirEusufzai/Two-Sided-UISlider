@@ -18,7 +18,7 @@
     
 }
 
-@property (nonatomic, retain) IBOutlet CrossSlider *slider;
+//@property (nonatomic, retain) IBOutlet CrossSlider *slider;
 @property (nonatomic, retain) IBOutlet UILabel *hLabel;
 @property (nonatomic, retain) IBOutlet UILabel *vLabel;
 

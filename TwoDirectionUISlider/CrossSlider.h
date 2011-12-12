@@ -52,17 +52,14 @@
 @property (nonatomic, assign) float vMaximumValue;
 @property (nonatomic, assign) float vMinimumValue;
 
-
+- (id)initWithFrame:(CGRect)frame hMinValue:(float)hMin hMaxValue:(float)hMax vMinValue:(float)vMin vMaxValue:(float)vMax currentHValue:(float)h currentVValue:(float)v;
 - (void) setDefaultValues;
 - (void) setUpThumb;
 - (void) setUpPositions;
 - (void) setUpHorizontalFrameAndBoundaries;
 - (void) setUpVerticalFrameAndBoundaries;
-
 - (void)addRoundedRect:(CGContextRef)context roundRect:(CGRect)rrect withRoundedCorner1:(BOOL)c1 corner2:(BOOL)c2 corner3:(BOOL)c3 corner4:(BOOL)c4 radius:(CGFloat)radius color:(UIColor *) color;
-
 -(CGRect) makeRectFromCenter: (CGPoint) center size:(CGPoint)size;
-
 -(void) updateValues;
 
 @end
